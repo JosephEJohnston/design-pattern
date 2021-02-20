@@ -20,7 +20,6 @@ public class PageMaker {
             writer.close();
             System.out.println(filename + " is created for " +
                     mailaddr + "(" + username + ")");
-            System.out.println("测试");
         } catch (IOException e) {
             e.printStackTrace();
         }

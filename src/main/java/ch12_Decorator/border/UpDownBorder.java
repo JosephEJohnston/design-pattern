@@ -30,6 +30,10 @@ public class UpDownBorder extends Border {
     }
 
     private String makeLine(char borderChar, int count) {
-        return String.valueOf(borderChar).repeat(count);
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            builder.append(borderChar);
+        }
+        return builder.toString();
     }
 }

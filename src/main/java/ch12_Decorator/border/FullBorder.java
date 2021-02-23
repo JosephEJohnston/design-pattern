@@ -29,7 +29,10 @@ public class FullBorder extends Border {
     }
 
     private String makeLine(char ch, int count) {
-        return String.valueOf(ch)
-                .repeat(Math.max(0, count));
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < Math.max(0, count); i++) {
+            builder.append(ch);
+        }
+        return builder.toString();
     }
 }

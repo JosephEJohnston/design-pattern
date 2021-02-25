@@ -2,7 +2,9 @@ package ch13_Visitor;
 
 import ch13_Visitor.entry.Directory;
 import ch13_Visitor.entry.File;
+import ch13_Visitor.visitor.FileFindVisitor;
 import ch13_Visitor.visitor.ListVisitor;
+import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
@@ -30,9 +32,21 @@ public class Main {
             yuki.add(new File("diary.html", 100));
             yuki.add(new File("Composite.java", 200));
             hanako.add(new File("memo.tex", 300));
+            hanako.add(new File("index.html", 350));
             tomura.add(new File("game.doc", 400));
             tomura.add(new File("junk.mail", 500));
-            rootDir.accept(new ListVisitor());
+//            rootDir.accept(new ListVisitor());
+
+            FileFindVisitor findVisitor = new FileFindVisitor(".html");
+            rootDir.accept(findVisitor);
+
+            System.out.println("HTML files are:");
+            Iterator<File> iterator = findVisitor.getFoundFiles();
+            while (iterator.hasNext()) {
+                File file = iterator.next();
+                System.out.println(file.toString());
+            }
+
         } catch (FileTreatmentException e) {
             e.printStackTrace();
         }

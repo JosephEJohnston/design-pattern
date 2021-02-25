@@ -1,6 +1,7 @@
 package ch13_Visitor.visitor;
 
 import ch13_Visitor.entry.Directory;
+import ch13_Visitor.entry.ElementArrayList;
 import ch13_Visitor.entry.Entry;
 import ch13_Visitor.entry.File;
 import java.util.ArrayList;
@@ -29,14 +30,24 @@ public class FileFindVisitor extends Visitor {
 
   @Override
   public void visit(Directory directory) {
-    Iterator<Entry> iterator = directory.iterator();
+    visitContent(directory.iterator());
+  }
+
+  @Override
+  public void visit(ElementArrayList list) {
+    visitContent(list.iterator());
+  }
+
+  private void visitContent(Iterator<Entry> iterator) {
     while (iterator.hasNext()) {
       Entry entry = iterator.next();
       if (entry instanceof File &&
           endWithSuffix((File) entry)) {
         fileFindList.add((File) entry);
       } else if (entry instanceof Directory) {
-        visit((Directory) entry);
+        entry.accept(this);
+      } else if (entry instanceof ElementArrayList) {
+        entry.accept(this);
       }
     }
   }

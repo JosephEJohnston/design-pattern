@@ -1,6 +1,7 @@
 package ch13_Visitor.visitor;
 
 import ch13_Visitor.entry.Directory;
+import ch13_Visitor.entry.ElementArrayList;
 import ch13_Visitor.entry.Entry;
 import ch13_Visitor.entry.File;
 
@@ -25,5 +26,14 @@ public class ListVisitor extends Visitor {
             entry.accept(this);
         }
         currentDir = saveDir;
+    }
+
+    @Override
+    public void visit(ElementArrayList list) {
+        Iterator<Entry> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Entry entry = iterator.next();
+            entry.accept(this);
+        }
     }
 }

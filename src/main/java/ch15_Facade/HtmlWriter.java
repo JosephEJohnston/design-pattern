@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.Writer;
 
 public class HtmlWriter {
-    private Writer writer;
-    public HtmlWriter(Writer writer) {
+    private final Writer writer;
+    HtmlWriter(Writer writer) {
         this.writer = writer;
     }
 

@@ -9,7 +9,7 @@ public class Database {
 
     }
 
-    public static Properties getProperties(String dbname) {
+    static Properties getProperties(String dbname) {
         String filename = dbname + ".txt";
         Properties prop = new Properties();
         try {

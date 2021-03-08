@@ -1,19 +1,26 @@
 package ch17_Observer.generator;
 
 public class IncrementalNumberGenerator extends NumberGenerator {
-    private int start;
-    private int end;
-    private int step;
     private int current;
+    private final int end;
+    private final int step;
 
+    public IncrementalNumberGenerator(int start, int end, int step) {
+        this.current = start;
+        this.end = end;
+        this.step = step;
+    }
 
     @Override
     public int getNumber() {
-        return 0;
+        return current;
     }
 
     @Override
     public void execute() {
-
+        while (current < end) {
+            notifyObservers();
+            current += step;
+        }
     }
 }

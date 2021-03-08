@@ -1,4 +1,6 @@
-package ch17_Observer;
+package ch17_Observer.observer;
+
+import ch17_Observer.generator.NumberGenerator;
 
 /**
  * @author Zeyuan Wang[wangzeyuan@nowcoder.com]

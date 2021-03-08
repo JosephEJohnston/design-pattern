@@ -1,4 +1,4 @@
-package ch17_Observer;
+package ch17_Observer.generator;
 
 import java.util.Random;
 

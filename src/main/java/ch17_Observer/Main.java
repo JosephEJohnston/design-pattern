@@ -1,5 +1,11 @@
 package ch17_Observer;
 
+import ch17_Observer.generator.NumberGenerator;
+import ch17_Observer.generator.RandomNumberGenerator;
+import ch17_Observer.observer.DigitObserver;
+import ch17_Observer.observer.GraphObserver;
+import ch17_Observer.observer.Observer;
+
 /**
  * @author Zeyuan Wang[wangzeyuan@nowcoder.com]
  * @date 2021/02/28

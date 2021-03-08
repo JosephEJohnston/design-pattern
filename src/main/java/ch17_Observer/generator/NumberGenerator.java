@@ -1,5 +1,6 @@
-package ch17_Observer;
+package ch17_Observer.generator;
 
+import ch17_Observer.observer.Observer;
 import java.util.ArrayList;
 import java.util.List;
 

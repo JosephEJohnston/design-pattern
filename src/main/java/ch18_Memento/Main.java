@@ -1,15 +1,38 @@
 package ch18_Memento;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 /**
  * @author Zeyuan Wang[wangzeyuan@nowcoder.com]
  * @date 2021/03/01
  */
 public class Main {
-  public static void main(String[] args) {
-    Gamer gamer = new Gamer(100);
+  public static void main(String[] args) throws ClassNotFoundException {
+    int money = 100;
+    try (ObjectInputStream in = new ObjectInputStream(
+        new BufferedInputStream(
+            new FileInputStream("game.dat")));) {
+
+      Memento lastMemento = (Memento)in.readObject();
+      if (lastMemento != null) {
+        money = lastMemento.getMoney();
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+      System.out.println("没有找到对象");
+    }
+
+
+    Gamer gamer = new Gamer(money);
     Memento memento = gamer.createMemento();
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
       System.out.println("==== " + i);
       System.out.println("当前状态：" + gamer);
 
@@ -29,6 +52,20 @@ public class Main {
       } catch (InterruptedException ignored) {
       }
       System.out.println();
+    }
+
+    if (memento.getMoney() > 100) {
+      try (ObjectOutputStream out = new ObjectOutputStream(
+          new BufferedOutputStream(
+              new FileOutputStream("game.dat")))) {
+
+        out.writeObject(memento);
+
+        out.flush();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+
     }
   }
 }

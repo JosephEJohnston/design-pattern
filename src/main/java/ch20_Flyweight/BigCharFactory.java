@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BigCharFactory {
-    private Map<String, BigChar> pool = new HashMap<>();
-    private static BigCharFactory singleton = new BigCharFactory();
+    private final Map<String, BigChar> pool = new HashMap<>();
+    private static final BigCharFactory singleton = new BigCharFactory();
 
     private BigCharFactory() {
 

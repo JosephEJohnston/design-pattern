@@ -8,7 +8,20 @@ public class Main {
             System.exit(0);
         }
 
-        BigString bs = new BigString(args[0]);
-        bs.print();
+        Runtime.getRuntime().gc();
+        BigString bs1 = new BigString(args[0]);
+        long used = Runtime.getRuntime().totalMemory() -
+            Runtime.getRuntime().freeMemory();
+        bs1.print();
+        System.out.println("使用内存 = " + used);
+
+
+        Runtime.getRuntime().gc();
+        BigString bs2 = new BigString(args[0], false);
+        used = Runtime.getRuntime().totalMemory() -
+            Runtime.getRuntime().freeMemory();
+        bs2.print();
+        System.out.println("使用内存 = " + used);
+
     }
 }

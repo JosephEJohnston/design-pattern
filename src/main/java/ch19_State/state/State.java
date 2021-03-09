@@ -1,4 +1,6 @@
-package ch19_State;
+package ch19_State.state;
+
+import ch19_State.Context;
 
 /**
  * @author Zeyuan Wang[wangzeyuan@nowcoder.com]

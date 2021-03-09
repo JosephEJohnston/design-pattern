@@ -1,4 +1,6 @@
-package ch19_State;
+package ch19_State.state;
+
+import ch19_State.Context;
 
 /**
  * @author Zeyuan Wang[wangzeyuan@nowcoder.com]
@@ -17,8 +19,10 @@ public class DayState implements State {
 
   @Override
   public void doClock(Context context, int hour) {
-    if (hour < 9 || 17 <= hour) {
+    if (hour < 8 || 21 <= hour) {
       context.changeState(NightState.getInstance());
+    } else if (hour == 12) {
+      context.changeState(LunchState.getInstance());
     }
   }
 
@@ -30,6 +34,7 @@ public class DayState implements State {
   @Override
   public void doAlarm(Context context) {
     context.callSecurityCenter("按下警铃（白天）");
+    context.changeState(EmergencyState.getInstance());
   }
 
   @Override

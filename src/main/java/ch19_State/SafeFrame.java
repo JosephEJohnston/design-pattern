@@ -1,5 +1,7 @@
 package ch19_State;
 
+import ch19_State.state.DayState;
+import ch19_State.state.State;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,12 +11,12 @@ import java.awt.event.ActionListener;
  * @date 2021/03/04
  */
 public class SafeFrame extends Frame implements ActionListener, Context {
-  private TextField textClock = new TextField(60);
-  private TextArea textScreen = new TextArea(10, 60);
-  private Button buttonUse = new Button("使用金库");
-  private Button buttonAlarm = new Button("按下警铃");
-  private Button buttonPhone = new Button("正常通话");
-  private Button buttonExit = new Button("结束");
+  private final TextField textClock = new TextField(60);
+  private final TextArea textScreen = new TextArea(10, 60);
+  private final Button buttonUse = new Button("使用金库");
+  private final Button buttonAlarm = new Button("按下警铃");
+  private final Button buttonPhone = new Button("正常通话");
+  private final Button buttonExit = new Button("结束");
 
   private State state = DayState.getInstance();
 

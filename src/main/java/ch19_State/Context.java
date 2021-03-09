@@ -1,5 +1,7 @@
 package ch19_State;
 
+import ch19_State.state.State;
+
 /**
  * @author Zeyuan Wang[wangzeyuan@nowcoder.com]
  * @date 2021/03/04

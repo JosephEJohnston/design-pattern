@@ -9,6 +9,7 @@ import java.awt.Color;
  */
 public class ColorCommand implements Command {
   private final DrawCanvas canvas;
+  // todo zeyuan，bug 原因：canvas 取消时的颜色和原来不一样
   private final Color color;
 
   public ColorCommand(DrawCanvas canvas, Color color) {

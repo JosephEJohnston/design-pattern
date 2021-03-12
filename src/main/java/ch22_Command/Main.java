@@ -1,5 +1,11 @@
 package ch22_Command;
 
+import ch22_Command.command.CancelCommand;
+import ch22_Command.command.ColorCommand;
+import ch22_Command.command.Command;
+import ch22_Command.command.DrawCommand;
+import ch22_Command.command.MacroCommand;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -18,8 +24,11 @@ import javax.swing.JFrame;
 public class Main extends JFrame
     implements ActionListener, MouseMotionListener, WindowListener {
   private final MacroCommand history = new MacroCommand();
-  private final DrawCanvas canvas = new DrawCanvas(400, 400, history);
+  private final DrawCanvas canvas = new DrawCanvas(400, 400, this.history);
   private final JButton clearButton = new JButton("clear");
+  private final JButton cancelButton = new JButton("cancel");
+  private final JButton colorRedButton = new JButton("color.red");
+  private final JButton colorYellowButton = new JButton("color.yellow");
 
   public Main(String title) {
     super(title);
@@ -27,9 +36,15 @@ public class Main extends JFrame
     this.addWindowListener(this);
     canvas.addMouseMotionListener(this);
     clearButton.addActionListener(this);
+    cancelButton.addActionListener(this);
+    colorRedButton.addActionListener(this);
+    colorYellowButton.addActionListener(this);
 
     Box buttonBox = new Box(BoxLayout.X_AXIS);
     buttonBox.add(clearButton);
+    buttonBox.add(cancelButton);
+    buttonBox.add(colorRedButton);
+    buttonBox.add(colorYellowButton);
     Box mainBox = new Box(BoxLayout.Y_AXIS);
     mainBox.add(buttonBox);
     mainBox.add(canvas);
@@ -44,6 +59,17 @@ public class Main extends JFrame
     if (e.getSource() == clearButton) {
       history.clear();
       canvas.repaint();
+    } else if (e.getSource() == cancelButton) {
+      Command cancelCommand = new CancelCommand(canvas);
+      cancelCommand.execute();
+    } else if (e.getSource() == colorRedButton) {
+      Command colorCommand = new ColorCommand(canvas, Color.RED);
+      history.append(colorCommand);
+      colorCommand.execute();
+    } else if (e.getSource() == colorYellowButton) {
+      Command colorCommand = new ColorCommand(canvas, Color.YELLOW);
+      history.append(colorCommand);
+      colorCommand.execute();
     }
   }
 

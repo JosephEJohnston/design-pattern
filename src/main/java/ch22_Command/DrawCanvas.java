@@ -1,5 +1,6 @@
 package ch22_Command;
 
+import ch22_Command.command.MacroCommand;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,7 +10,7 @@ import java.awt.Graphics;
  * @date 2021/03/11
  */
 public class DrawCanvas extends Canvas implements Drawable {
-  private final Color color = Color.RED;
+  private Color color = Color.RED;
   private final int radius = 6;
   private final MacroCommand history;
 
@@ -20,6 +21,7 @@ public class DrawCanvas extends Canvas implements Drawable {
   }
 
   public void paint(Graphics g) {
+    System.out.println("Hello World: " + g);
     history.execute();
   }
 
@@ -29,5 +31,15 @@ public class DrawCanvas extends Canvas implements Drawable {
     g.setColor(color);
     g.fillOval(x - radius, y - radius,
         radius * 2, radius * 2);
+  }
+
+  @Override
+  public void cancel() {
+    history.undo();
+    repaint();
+  }
+
+  public void setColor(Color color) {
+    this.color = color;
   }
 }

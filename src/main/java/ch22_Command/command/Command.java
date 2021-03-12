@@ -1,4 +1,4 @@
-package ch22_Command;
+package ch22_Command.command;
 
 /**
  * @author Zeyuan Wang[wangzeyuan@nowcoder.com]

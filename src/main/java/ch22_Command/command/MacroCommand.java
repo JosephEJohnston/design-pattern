@@ -1,4 +1,4 @@
-package ch22_Command;
+package ch22_Command.command;
 
 import java.util.Deque;
 import java.util.LinkedList;

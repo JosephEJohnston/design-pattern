@@ -1,6 +1,7 @@
 package ch22_Command.command;
 
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -12,9 +13,11 @@ public class MacroCommand implements Command {
 
   @Override
   public void execute() {
-    for (Command command : commands) {
+    Iterator<Command> iterator = commands
+        .descendingIterator();
+    while (iterator.hasNext()) {
+      Command command = iterator.next();
       command.execute();
-      System.out.println(command);
     }
   }
 

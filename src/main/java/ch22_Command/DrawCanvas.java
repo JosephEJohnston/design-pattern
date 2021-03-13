@@ -21,7 +21,8 @@ public class DrawCanvas extends Canvas implements Drawable {
   }
 
   public void paint(Graphics g) {
-    System.out.println("Hello World: " + g);
+    // 比较坑的一个点，需要在每次撤销时将画布置为初始画色
+    setColor(Color.RED);
     history.execute();
   }
 

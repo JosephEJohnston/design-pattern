@@ -1,4 +1,4 @@
-package ch23_Interpreter;
+package ch23_Interpreter.language;
 
 import java.util.StringTokenizer;
 
@@ -6,7 +6,8 @@ import java.util.StringTokenizer;
  * @author Zeyuan Wang[wangzeyuan@nowcoder.com]
  * @date 2021/03/12
  */
-public class Context {
+public class Context implements ExecutorFactory {
+  private ExecutorFactory factory;
   private final StringTokenizer tokenizer;
   private String currentToken;
 
@@ -25,7 +26,7 @@ public class Context {
     return currentToken;
   }
 
-  public String currentToekn() {
+  public String currentToken() {
     return currentToken;
   }
 
@@ -38,12 +39,21 @@ public class Context {
   }
 
   public int currentNumber() throws ParseException {
-    int number = 0;
+    int number;
     try {
       number = Integer.parseInt(currentToken);
     } catch (NumberFormatException e) {
       throw new ParseException("Warning: " + e);
     }
     return number;
+  }
+
+  public void setExecutorFactory(ExecutorFactory factory) {
+    this.factory = factory;
+  }
+
+  @Override
+  public Executor createExecutor(String name) {
+    return factory.createExecutor(name);
   }
 }

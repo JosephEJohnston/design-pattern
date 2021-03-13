@@ -1,4 +1,4 @@
-package ch23_Interpreter;
+package ch23_Interpreter.language;
 
 /**
  * @author Zeyuan Wang[wangzeyuan@nowcoder.com]

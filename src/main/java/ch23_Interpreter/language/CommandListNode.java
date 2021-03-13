@@ -1,6 +1,7 @@
-package ch23_Interpreter;
+package ch23_Interpreter.language;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -13,9 +14,9 @@ public class CommandListNode extends Node {
   @Override
   public void parse(Context context) throws ParseException {
     while (true) {
-      if (context.currentToekn() == null) {
+      if (context.currentToken() == null) {
         throw new ParseException("Missing 'end'");
-      } else if (context.currentToekn().equals("end")) {
+      } else if (context.currentToken().equals("end")) {
         context.skipToken("end");
         break;
       } else {
@@ -23,6 +24,13 @@ public class CommandListNode extends Node {
         commandNode.parse(context);
         list.add(commandNode);
       }
+    }
+  }
+
+  @Override
+  public void execute() throws ExecuteException {
+    for (Node node : list) {
+      node.execute();
     }
   }
 

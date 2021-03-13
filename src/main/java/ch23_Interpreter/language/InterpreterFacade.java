@@ -17,6 +17,7 @@ public class InterpreterFacade implements Executor {
     boolean ok = true;
     this.context = new Context(text);
     this.context.setExecutorFactory(factory);
+    this.programNode = new ProgramNode();
     try {
       programNode.parse(context);
       System.out.println(programNode.toString());
